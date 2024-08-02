@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+    :root {
+        --primary-color: #a855f7;
+        --primary-color-dark: #9333ea;
+        --secondary-color: #ca8a04;
+        --text-dark: #d1d5db;
+        --text-light: #9ca3af;
+        --background-dark: #1f2937;
+        --background-darker: #111827;
+        --max-width: 1200px;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--background-dark);
+        color: var(--text-dark);
+    }
+
+    nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: var(--background-darker);
+        z-index: 99;
+        border-bottom: 1px solid var(--text-light);
+    }
+
+    .nav__content {
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 1.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    nav .logo a {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        transition: 0.3s;
+    }
+
+    nav .logo a:hover {
+        color: var(--primary-color-dark);
+    }
+
+    nav .checkbox {
+        display: none;
+    }
+
+    nav input {
+        display: none;
+    }
+
+    nav .checkbox i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        cursor: pointer;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        list-style: none;
+        transition: left 0.3s;
+    }
+
+    ul li a {
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--text-dark);
+        transition: 0.3s;
+    }
+
+    ul li a:hover {
+        border-top-color: var(--secondary-color);
+        border-bottom-color: var(--secondary-color);
+        color: var(--secondary-color);
+    }
+
+    .section {
+        display: none;
+        background-color: var(--background-darker);
+        padding-top: 5rem;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .section.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section__container {
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 1rem;
+        display: flex;
+        gap: 4rem;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .image {
+        flex: 1;
+        display: grid;
+        place-items: center;
+    }
+
+    .image img {
+        width: min(25rem, 90%);
+        border-radius: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+        letter-spacing: 2px;
+        color: var(--text-light);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        font-weight: 400;
+        line-height: 3rem;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+    }
+
+    .title span {
+        font-weight: 600;
+    }
+
+    .description {
+        line-height: 1.5rem;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        background-color: var(--background-dark);
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .card h3 {
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+    }
+
+    .card p {
+        color: var(--text-light);
+    }
+
+    .education-grid {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: nowrap;
+    }
+
+    .card {
+        flex: 1;
+        min-width: 250px;
+        background-color: var(--background-dark);
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .card h3 {
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+    }
+
+    .card p {
+        color: var(--text-light);
+    }
+
+    .experience-grid,
+    .projects-grid,
+    .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .skill-category {
+        flex: 1;
+        min-width: 300px;
+        background-color: var(--background-dark);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .skill-category h3 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .skill-category p.skills-list {
+        color: var(--text-light);
+        font-size: 1rem;
+    }
+
+    @media (max-width: 750px) {
+        .skills-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .skill-category {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+
+    section a {
+        color: var(--primary-color);
+    }
+
+    section a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 750px) {
+        nav .checkbox {
+            display: block;
+        }
+
+        ul {
+            position: absolute;
+            width: 100%;
+            height: calc(100vh - 85px);
+            left: -100%;
+            top: 85px;
+            background-color: var(--background-darker);
+            flex-direction: column;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        nav #check:checked ~ ul {
+            left: 0;
+        }
+
+        ul li a {
+            font-size: 1.25rem;
+        }
+
+        .section__container {
+            padding: 10rem 1rem 5rem 1rem;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .image {
+            margin-bottom: 2rem;
+        }
+
+        .projects-grid,
+        .education-grid,
+        .experience-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .contact-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .contact-card {
+        flex: 1 1 300px;
+        background-color: var(--background-dark);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .contact-icon {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .contact-info {
+        color: var(--text-light);
+        font-size: 1rem;
+        word-wrap: break-word;
+    }
+
+    .contact-title {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 750px) {
+        .contact-cards {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-card {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+
+  <title>Abhinav Bhardwaj's Portfolio</title>
+</head>
+<body>
+  <nav>
+    <div class="nav__content">
+      <div class="logo"><a href="#">Abhinav Bhardwaj</a></div>
+      <label for="check" class="checkbox">
+        <i class="ri-menu-line"></i>
+      </label>
+      <input type="checkbox" name="check" id="check" />
+      <ul>
+        <li><a href="#" data-target="home">Home</a></li>
+        <li><a href="#" data-target="about">About</a></li>
+        <li><a href="#" data-target="education">Education</a></li>
+        <li><a href="#" data-target="experience">Experience</a></li>
+        <li><a href="#" data-target="projects">Projects</a></li>
+        <li><a href="#" data-target="skills">Skills</a></li>
+        <li><a href="#" data-target="resume">Resume</a></li>
+        <li><a href="#" data-target="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="home" class="section active">
+    <div class="section__container">
+      <div class="content">
+        <p class="subtitle">HELLO</p>
+        <h1 class="title">
+          I'm <span>Abhinav<br />Bhardwaj</span>
+        </h1>
+        <p class="description">
+          Hello, I'm Abhinav Bhardwaj, a dedicated Computer Science student in my fourth year. I have a deep passion for technology and problem-solving, and I’m constantly exploring new ways to leverage my skills to tackle complex challenges. My academic journey has provided me with a solid foundation in various areas of computer science, from software development to artificial intelligence. I am excited to continue learning and applying my knowledge to innovative projects and real-world solutions.
+        </p>
+      </div>
+      <div class="image">
+        <img src="assets/profile4.jpg" alt="profile">
+      </div>
+    </div>
+  </section>
+
+ <section id="about" class="section">
+  <div class="section__container">
+    <div class="image">
+      <img src="assets/profile4.jpg" alt="profile">
+    </div>
+    <div class="content">
+      <h2>About Me</h2>
+      <p>
+        I am a focused and enthusiastic Computer Science student with a deep interest in software development and machine learning. I am actively seeking opportunities to apply my skills in a dynamic and collaborative environment.
+      </p>
+      <br>
+      <ul class="about-info">
+        <li><strong>Birthday:</strong> March 07, 2002</li>
+        <li><strong>Phone:</strong> +91 9027781704</li>
+        <li><strong>City:</strong> Faridabad, India</li>
+        <li><strong>Email:</strong> abhinavbrdj7802@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+  <section id="education" class="section">
+    <div class="section__container">
+      <div class="content">
+        <h2>Education</h2>
+        <div class="education-grid">
+          <div class="card">
+            <img src="assets/OIP (19).jpg" alt="Graphic Era University" class="card-image">
+            <h3>Graphic Era University, Dehradun, India</h3>
+            <p>B.Tech in Computer Science and Engineering <br>CGPA: 7.3/10 <br>(Sep. 2021 - July 2025)</p>
+          </div>
+          <div class="card">
+            <img src="assets/OIP (18).jpg" alt="Guru Tegh Bahadur School 12th" class="card-image">
+            <h3>Guru Tegh Bahadur School, Meerut, India</h3>
+            <p>12th, C.B.S.E. <br> Percentage: 84/100 <br>(April 2020 - April 2021)</p>
+          </div>
+          <div class="card">
+            <img src="assets/OIP (18).jpg" alt="Guru Tegh Bahadur School 10th" class="card-image">
+            <h3>Guru Tegh Bahadur School, Meerut, India</h3>
+            <p>10th, C.B.S.E. <br> Percentage: 88/100 <br>(April 2018 - April 2019)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="experience" class="section">
+    <div class="section__container">
+      <div class="content">
+        <h2>Experience</h2>
+        <div class="experience-grid">
+          <div class="card">
+            <img src="assets/download.jpg" alt="Amazon ML Summer School" class="card-image">
+            <h3>Amazon ML Summer School 2024</h3>
+            <p>Explored advanced topics in machine learning through lectures, workshops, and practical assignments.</p>
+          </div>
+          <div class="card">
+            <img src="assets/drdo1.jpg" alt="DEAL DRDO" class="card-image">
+            <h3>DEAL DRDO Intern</h3>
+            <p>Summer Intern in Defence Electronics Application Laboratory (DEAL)-Defence Research and Development Organisation (DRDO) in Special Projects Group (SPG) of CERCS Department.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="section__container">
+      <div class="content">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="card">
+            <img class="card-image" src="assets/p1 (1).jpg" alt="AI Voice Assistant App-’Sirius’">
+            <h3>AI Voice Assistant App-’Sirius’</h3>
+            <p>Developed ‘Sirius’, integrating speech recognition, text-to-speech, and generative AI to handle over 100 unique voice commands and queries.</p>
+            <a href="https://github.com/myselfabhinav" target="_blank">View on GitHub</a>
+          </div>
+          <div class="card">
+            <img class="card-image" src="assets/p1 (4).jpg" alt="YouTube Emotion Mining Tool">
+            <h3>YouTube Emotion Mining Tool</h3>
+            <p>Analyzed sentiment of over 15,000 YouTube video comments using YouTube Data API and TextBlob.</p>
+            <a href="https://github.com/myselfabhinav" target="_blank">View on GitHub</a>
+          </div>
+          <div class="card">
+            <img class="card-image" src="assets/p1 (3).jpg" alt="Chatbird: Real-Time Chatting Platform">
+            <h3>Chatbird: Real-Time Chatting Platform</h3>
+            <p>Developed a robust chat application with React Native for cross-platform compatibility, integrating with a firebase backend database.</p>
+            <a href="https://github.com/myselfabhinav" target="_blank">View on GitHub</a>
+          </div>
+          <div class="card">
+            <img class="card-image" src="assets/p1 (2).jpg" alt="Diagnosis of diseases: Disease classification">
+            <h3>Diagnosis of diseases: Disease classification</h3>
+            <p>Engineered a deep learning system for disease diagnosis through image classification using CNNs, TensorFlow, and PyTorch.</p>
+            <a href="https://github.com/myselfabhinav" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="section__container">
+      <div class="content">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Languages</h3>
+            <p class="skills-list">Java, C++, C, Python, HTML, CSS, JavaScript, MySQL</p>
+          </div>
+          <div class="skill-category">
+            <h3>Developer Tools</h3>
+            <p class="skills-list">VS Code, Eclipse, Pycharm, Android Studio</p>
+          </div>
+          <div class="skill-category">
+            <h3>Technologies/Frameworks</h3>
+            <p class="skills-list">Flask, GitHub, Bootstrap</p>
+          </div>
+          <div class="skill-category">
+            <h3>Machine Learning Tools</h3>
+            <p class="skills-list">NumPy, Pandas, Matplotlib, Seaborn, TensorFlow, Keras, scikit-learn, PyTorch</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+
+  <section id="resume" class="section">
+    <div class="section__container">
+      <div class="content">
+        <h2>Resume</h2>
+        <p>You can download my resume from the link below:</p>
+        <a href="https://example.com/Abhinav_Bhardwaj_Resume.pdf" target="_blank">Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="section__container">
+      <div class="content">
+        <h2>Contact</h2>
+        <p>If you would like to get in touch with me, you can reach me via the following:</p>
+        <div class="contact-cards">
+          <div class="card">
+            <div class="card-content">
+              <img src="https://img.icons8.com/ios-filled/50/000000/mail.png" alt="Email Icon" class="card-icon"/>
+              <div class="card-text">
+                <h3>Email</h3>
+                <p>abhinavbrdj7802@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Phone Icon" class="card-icon"/>
+              <div class="card-text">
+                <h3>Phone</h3>
+                <p>+91 9027781704</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="https://www.linkedin.com/in/abhinav-bhardwaj-35574722a/" target="_blank" class="card-content">
+              <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn Icon" class="card-icon"/>
+              <div class="card-text">
+                <h3>LinkedIn</h3>
+               
+              </div>
+            </a>
+          </div>
+          <div class="card">
+            <a href="https://github.com/myselfabhinav" target="_blank" class="card-content">
+              <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Icon" class="card-icon"/>
+              <div class="card-text">
+                <h3>GitHub</h3>
+               
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <script>
+    const links = document.querySelectorAll('nav ul li a');
+    const sections = document.querySelectorAll('.section');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const target = link.getAttribute('data-target');
+
+        sections.forEach(section => {
+          if (section.id === target) {
+            section.classList.add('active');
+          } else {
+            section.classList.remove('active');
+          }
+        });
+
+        document.getElementById('check').checked = false;
+      });
+    });
+  </script>
+</body>
+</html>
